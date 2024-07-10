@@ -1,4 +1,63 @@
-/* Your Code Here */
+function createEmployeeRecord(arr){
+    const obj = {
+        firstName: arr[0], 
+        familyName: arr[1], 
+        title: arr[2], 
+        payPerHour: arr[3], 
+        timeInEvents: [], 
+        timeOutEvents:[]
+    }
+    return obj
+}
+
+function createEmployeeRecords(arr){
+    const records =  arr.map(arrNested => createEmployeeRecord(arrNested))
+    return records
+}
+
+function createTimeInEvent(str){
+    let dt= str.split(' ')[0]
+    let hr= str.split(' ')[1]
+    this.timeInEvents.push({
+        type: "TimeIn",
+        hour: parseInt(hr),
+        date: dt
+    })
+    return this
+}
+
+function createTimeOutEvent (str){
+    let dt= str.split(' ')[0]
+    let hr= str.split(' ')[1]
+    this.timeOutEvents.push({
+        type: "TimeOut",
+        hour: parseInt(hr),
+        date: dt
+    })
+    return this
+}
+
+function hoursWorkedOnDate (str){
+    let timeIn = this.timeInEvents.find(obj => obj.date === str)
+    let timeOut = this.timeOutEvents.find(obj => obj.date === str)
+    let hrs = (timeOut.hour - timeIn.hour)/100
+    return hrs
+}
+
+function wagesEarnedOnDate(str){
+    let wages = hoursWorkedOnDate.call(this, str) * this.payPerHour
+    return wages
+}
+
+function findEmployeeByFirstName (arr, str){
+    let match = arr.find(arrNested => arrNested.firstName === str)
+    return match
+}
+
+function calculatePayroll (arr){
+    let payRoll = arr.reduce((accum, obj) => accum + allWagesFor.call(obj), 0)
+    return payRoll
+}
 
 /*
  We're giving you this function. Take a look at it, you might see some usage
